@@ -1,33 +1,37 @@
 #include <iostream>
 using namespace std;
 
+void vvod(int n, int arr[100]) {
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    } 
+}
+
 int main() {
     setlocale(LC_ALL, "rus");
-    int tickets[50] = {
-        101, 105, 110, 115, 120, 125, 130, 135, 140, 145,
-        150, 155, 160, 165, 170, 175, 180, 185, 190, 195,
-        200, 210, 220, 230, 240, 250, 260, 270, 280, 290,
-        300, 310, 320, 330, 340, 350, 360, 370, 380, 390,
-        400, 410, 420, 430, 440, 450, 460, 470, 480, 490
-    };
-
-    int sums[50] = {
-        100, 150, 200, 250, 300, 350, 400, 450, 500, 550,
-        600, 650, 700, 750, 800, 850, 900, 950, 1000, 1050,
-        1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000,
-        2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000,
-        3100, 3200, 3300, 3400, 3500, 3600, 3700, 3800, 3900, 4000
-    };
-
-    int myTickets[5] = { 115, 200, 999, 450, 700 };
-
-    for (int i = 0; i < 5; i++) {
-        int ticket = myTickets[i];
+    int n, x;
+    int tickets[100];
+    int sums[100];
+    int myTickets[100];
+    cout << "Введите количество выигрышных билетов:" << endl;
+    cin >> n;
+    cout << "Введите номера выигрышных билетов по возрастанию:" << endl;
+    vvod(n, tickets);
+    cout << "Введите суммы выигрышей билетов:" << endl;
+    vvod(n, sums);
+    cout << "Введите количество купленных билетов:" << endl;
+    cin >> x;
+    cout << "Введите номера купленных билетов:" << endl;
+    vvod(x, myTickets);
+    int win = 0;
+    for (int i = 0; i < x; i++) {
         int prize = 0;
+        int ticket = myTickets[i];
         bool found = false;
-        for (int j = 0; j < 50; j++) {
+        for (int j = 0; j < n; j++) {
             if (tickets[j] == ticket) {
                 prize = sums[j];
+                win += prize;
                 found = true;
                 break;
             }
@@ -39,6 +43,5 @@ int main() {
             cout << "Билет номер " << ticket << " — не выигрышный" << endl;
         }
     }
-
-    return 0;
+    cout << "Суммарный выигрышъ: " << win;
 }
